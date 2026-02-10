@@ -9,6 +9,7 @@ import profileRoutes from "./routes/profile.routes.js";
 import swipeRoutes from "./routes/swipe.routes.js";
 import matchRoutes from "./routes/match.routes.js";
 import discoverRoutes from "./routes/discover.routes.js"
+import chatRoutes from "./routes/chat.routes.js";
 
 
 const app = express();
@@ -39,6 +40,7 @@ app.use("/api/user", userRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/swipe", swipeRoutes);
 app.use("/api/match", matchRoutes);
-app.use("/api/discover", discoverRoutes)
+app.use("/api/discover", discoverRoutes);
+app.use("/api/chat", chatRoutes);
 
 export default app;

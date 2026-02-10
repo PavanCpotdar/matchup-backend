@@ -6,17 +6,18 @@ const messageSchema = new mongoose.Schema({
         ref: "Match",
         required: true
     },
+
     sender: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         required: true
     },
-    seen: {
-        type: Boolean,
-        default: false
-    },
 
-    text: String
+    text: {
+        type: String,
+        required: true
+    }
+
 }, { timestamps: true });
 
 export default mongoose.model("Message", messageSchema);

@@ -1,24 +1,27 @@
 import Message from "../models/Message.model.js";
 
 export const getMessages = async (req, res) => {
-    const { matchId } = req.params;
+    try {
+        const messages = await Message.find({
+            matchId: req.params.id
+        }).sort({ createdAt: 1 });
 
-    const messages = await Message.find({ matchId })
-        .populate("sender", "name")
-        .sort("createdAt");
-
-    res.json(messages);
+        res.json(messages);   // ✅ MUST be ARRAY
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
 };
 
 export const sendMessage = async (req, res) => {
-    const { matchId } = req.params;
-    const { text } = req.body;
+    try {
+        const message = await Message.create({
+            matchId: req.params.id,
+            sender: req.user._id,
+            text: req.body.text
+        });
 
-    const message = await Message.create({
-        matchId,
-        sender: req.user._id,
-        text
-    });
-
-    res.status(201).json(message);
+        res.json(message);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
 };

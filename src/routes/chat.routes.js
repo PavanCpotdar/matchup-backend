@@ -4,7 +4,7 @@ import { getMessages, sendMessage } from "../controllers/chat.controllers.js";
 
 const router = express.Router();
 
-router.get("/:matchId", authMiddleware, getMessages);
-router.post("/:matchId", authMiddleware, sendMessage);
+router.get("/:id", authMiddleware, getMessages);
+router.post("/:id", authMiddleware, sendMessage);
 
 export default router;
