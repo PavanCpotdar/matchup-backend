@@ -29,12 +29,20 @@ export const register = async (req, res) => {
         // generate token
         const token = generateToken(user._id);
 
-        res.cookie("token", token, {
+        // res.cookie("token", token, {
+        //     httpOnly: true,
+        //     secure: process.env.NODE_ENV === "production",
+        //     sameSite: "strict",
+        //     maxAge: 7 * 24 * 60 * 60 * 1000
+        // });
+
+        res.cookie("token", "", {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "strict",
-            maxAge: 7 * 24 * 60 * 60 * 1000
+            secure: true,
+            sameSite: "none",
+            expires: new Date(0)
         });
+
 
         res.status(201).json({
             message: "User registered successfully",

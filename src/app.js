@@ -18,8 +18,15 @@ app.use(cookieParser());
 /* security middlewares */
 app.use(helmet());
 app.use(express.json());
+// app.use(cors({
+//     origin: [
+//         "http://localhost:5173",
+//         "https://YOUR_FRONTEND.vercel.app"
+//     ],
+//     credentials: true
+// }));
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: true,
     credentials: true
 }));
 
